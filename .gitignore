@@ -23,5 +23,15 @@ DerivedData
 *.gcno
 .swiftpm
 
+*.moved-aside
+**/*sync/
+.sconsign.dblite
+.tags*
+**/.vagrant/
+Icon?
+**/Pods/
+**/.symlinks/
+profile
+
 # VSCode
 .vscode/*

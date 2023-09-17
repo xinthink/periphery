@@ -36,6 +36,15 @@ public final class SourceGraph {
     public func indexingComplete() {
         rootDeclarations = allDeclarations.filter { $0.parent == nil }
         rootReferences = allReferences.filter { $0.parent == nil }
+
+      let structs = allDeclarations.filter { d in
+        d.kind == .class || d.kind == .struct
+      }
+
+      print("--- All Classes and Structs ---")
+      for s in structs {
+        print(s)
+      }
     }
 
     func declarations(ofKind kind: Declaration.Kind) -> Set<Declaration> {

@@ -14,9 +14,11 @@ build_x86_64:
 build_arm64:
 	@swift build ${SWIFT_BUILD_FLAGS} --arch arm64
 
-build_release: clean build_x86_64 build_arm64
+build_release: build_x86_64 build_arm64
 	@lipo -create -output ${EXECUTABLE} ${EXECUTABLE_X86_64} ${EXECUTABLE_ARM64}
 	@strip -rSTX ${EXECUTABLE}
+
+clean_build_release: clean build_release
 
 show_bin_path:
 	@echo ${EXECUTABLE}

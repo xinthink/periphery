@@ -26,6 +26,7 @@ final class DefaultConstructorReferenceBuilder: SourceGraphMutator {
                     let reference = Reference(kind: .functionConstructor,
                                               usr: usr,
                                               location: parent.location)
+//                    print("default constructor ref: class=\(parent.location) <- \(usr)")
                     reference.name = constructor.name
                     reference.parent = parent
                     graph.add(reference, from: parent)
