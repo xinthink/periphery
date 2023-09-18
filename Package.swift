@@ -32,7 +32,7 @@ frontendDependencies.append(.target(name: "XcodeSupport"))
 #endif
 
 var targets: [PackageDescription.Target] = [
-    .target(
+    .executableTarget(
         name: "Frontend",
         dependencies: frontendDependencies
     ),
@@ -156,9 +156,7 @@ let package = Package(
     name: "Periphery",
     platforms: [.macOS(.v13)],
     products: [
-        .library(name: "Frontend", targets: ["Frontend"]),
-        .library(name: "PeripheryKit", targets: ["PeripheryKit"]),
-        .library(name: "PeripheryShared", targets: ["Shared"]),
+        .executable(name: "periphery", targets: ["Frontend"]),
     ],
     dependencies: dependencies,
     targets: targets,
