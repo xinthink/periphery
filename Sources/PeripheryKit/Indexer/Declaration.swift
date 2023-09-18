@@ -295,6 +295,23 @@ extension Declaration: CustomStringConvertible {
                 formattedUsrs,
                 location.shortDescription]
     }
+
+  public func dumpRefer() -> [String] {
+    let formattedName = name ?? ""
+    let formattedModifiers = modifiers.sorted().joined(separator: " ")
+    let implicitOrExplicit = isImplicit ? "implicit" : "explicit"
+    return references.map { r in
+      [
+        kind.rawValue,
+        formattedName,
+        implicitOrExplicit,
+        formattedModifiers,
+        location.shortDescription,
+        "->",
+        r.csvRow,
+      ].joined(separator: ",")
+    }
+  }
 }
 
 extension Declaration: Comparable {

@@ -69,6 +69,17 @@ extension Reference: CustomStringConvertible {
 
         return [kind.rawValue, formattedName, "'\(usr)'", location.shortDescription]
     }
+
+  var csvRow: String {
+    [
+      isRelated ? "related" : "reference",
+      name ?? "",
+      usr,
+      kind.rawValue,
+      "\(role)",
+      location.shortDescription,
+    ].lazy.joined(separator: ",")
+  }
 }
 
 extension Reference: Comparable {

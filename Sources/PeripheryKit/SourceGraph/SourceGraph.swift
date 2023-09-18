@@ -37,13 +37,19 @@ public final class SourceGraph {
         rootDeclarations = allDeclarations.filter { $0.parent == nil }
         rootReferences = allReferences.filter { $0.parent == nil }
 
-      let structs = allDeclarations.filter { d in
-        d.kind == .class || d.kind == .struct
+      let declarations = allDeclarations.filter { d in
+        d.kind == .class || d.kind == .struct || d.kind == .protocol || d.kind.rawValue.starts(with: "function")
       }
 
-      print("--- All Classes and Structs ---")
-      for s in structs {
-        print(s)
+      print("--- references ---")
+      print("consumer kind,consumer name,explicit,modifiers,consumer declaration location,-,related or reference,referred symbol,provider,reference kind,reference role,reference location")
+      for d in declarations {
+        let row = d.dumpRefer()
+          .filter { !$0.trimmed.isEmpty }
+          .joined(separator: "\n")
+        if !row.trimmed.isEmpty {
+          print(row)
+        }
       }
     }
 
